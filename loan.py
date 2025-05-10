@@ -116,7 +116,7 @@ def main():
                 "Employment Status",
                 ["Employed", "Self-Employed", "Unemployed", "Student"]
             )
-            mobile_number= st.number_input("Enter your mobile number",min_value=0, step=10)
+            mobile_number= st.number_input("Mobile number",min_value=0 )
         
         submitted = st.form_submit_button("Check Eligibility")
         
