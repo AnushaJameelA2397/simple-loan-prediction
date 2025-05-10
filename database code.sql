@@ -17,6 +17,7 @@ CREATE TABLE Customers (
     ExistingDebt DECIMAL(10,2) DEFAULT 0,
     EmploymentStatus VARCHAR(50),
     EligibilityStatus VARCHAR(20),
+    MobileNumber DECIMAL(10,2) NOT NULL,
     ApplicationDate DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
