@@ -64,7 +64,7 @@ def save_customer_data(customer_data, is_eligible, reasons):
         cursor = connection.cursor()
         query = """
         INSERT INTO Customers 
-        (Name, Age, Gender, Income, CreditScore, LoanAmount, LoanTerm, ExistingDebt, EmploymentStatus, EligibilityStatus,MobileNumber)
+        (Name, Age, Gender, Income, CreditScore, LoanAmount, LoanTerm, ExistingDebt, EmploymentStatus, EligibilityStatus, MobileNumber)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
@@ -80,7 +80,7 @@ def save_customer_data(customer_data, is_eligible, reasons):
             customer_data['loan_term'],
             customer_data['existing_debt'],
             customer_data['employment_status'],
-            customer_data['mobile_number']
+            customer_data['mobile_number'],
             eligibility_status
         ))
         
@@ -134,7 +134,7 @@ def main():
                     'loan_term': loan_term,
                     'existing_debt': existing_debt,
                     'employment_status': employment_status,
-                    'mobile_number':mobile_number
+                    'mobile_number': mobile_number
                 }
                 
                 is_eligible, reasons = check_eligibility(customer_data)
