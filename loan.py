@@ -64,8 +64,8 @@ def save_customer_data(customer_data, is_eligible, reasons):
         cursor = connection.cursor()
         query = """
         INSERT INTO Customers 
-        (Name, Age, Gender, Income, CreditScore, LoanAmount, LoanTerm, ExistingDebt, EmploymentStatus, EligibilityStatus)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        (Name, Age, Gender, Income, CreditScore, LoanAmount, LoanTerm, ExistingDebt, EmploymentStatus, EligibilityStatus,MobileNumber)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         eligibility_status = "Approved" if is_eligible else "Denied"
@@ -80,6 +80,7 @@ def save_customer_data(customer_data, is_eligible, reasons):
             customer_data['loan_term'],
             customer_data['existing_debt'],
             customer_data['employment_status'],
+            customer_data['mobile_number']
             eligibility_status
         ))
         
@@ -115,11 +116,12 @@ def main():
                 "Employment Status",
                 ["Employed", "Self-Employed", "Unemployed", "Student"]
             )
+            mobile_number= st.number_input("Enter your mobile number",min_value=0, step=10)
         
         submitted = st.form_submit_button("Check Eligibility")
         
         if submitted:
-            if not all([name, age, income, credit_score, loan_amount, existing_debt]):
+            if not all([name, age, income, credit_score, loan_amount, existing_debt,mobile_number]):
                 st.warning("Please fill all required fields")
             else:
                 customer_data = {
@@ -131,7 +133,8 @@ def main():
                     'loan_amount': loan_amount,
                     'loan_term': loan_term,
                     'existing_debt': existing_debt,
-                    'employment_status': employment_status
+                    'employment_status': employment_status,
+                    'mobile_number':mobile_number
                 }
                 
                 is_eligible, reasons = check_eligibility(customer_data)
